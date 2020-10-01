@@ -1,5 +1,7 @@
 const Vue = require('vue')
 const server = require('express')()
+// TODO
+const createApp = require('/path/to/built-server-bundle.js')
 
 const template = require('fs').readFileSync('./index.template.html', 'utf-8')
 
@@ -7,29 +9,22 @@ const render = require('vue-server-renderer').createRenderer({
   template,
 })
 
-const context = {
-  title: 'vue ssr',
-  meta: `
-    <meta name="keyword" content="vue,ssr">
-    <meta name="description" content="vue srr demo">
-  `,
-}
-
 server.get('*', (req, res) => {
-  const app = new Vue({
-    data: {
-      url: req.url,
-    },
-    template: `<div>访问的 URL 是： {{ url }}</div>`,
-  })
+  const context = { url: req.url }
 
-  render.renderToString(app, context, (err, html) => {
-    if (err) {
-      res.status(500).end('Internal Server Error')
-      return
-    }
-    res.set('Content-Type', 'text/html')
-    res.end(html)
+  createApp(context).then((app) => {
+    render.renderToString(app, context, (err, html) => {
+      if (err) {
+        if (err.code === 404) {
+          res.status(404).end('Page not found')
+        } else {
+          res.status(500).end('Internal Server Error')
+        }
+      } else {
+        res.set('Content-Type', 'text/html')
+        res.end(html)
+      }
+    })
   })
 })
 
