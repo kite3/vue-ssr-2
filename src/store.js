@@ -18,10 +18,24 @@ const fetchItems = function () {
   })
 }
 
+const fetchObjMsg = function () {
+  return new Promise((resolve, reject) => {
+    const objMsg = {
+      x: 1,
+      y: 2,
+      z: 3
+    }
+    setTimeout(() => {
+      resolve(objMsg)
+    }, 300)
+  })
+}
+
 export function createStore() {
   return new Vuex.Store({
     state: {
       items: [],
+      objMsg: {}
     },
     actions: {
       fetchItems({ commit }) {
@@ -31,11 +45,19 @@ export function createStore() {
           commit('setItems', items)
         })
       },
+      fetchObjMsg({ commit }) {
+        return fetchObjMsg().then(objMsg => {
+          commit('setObjMsg', objMsg)
+        })
+      }
     },
     mutations: {
       setItems(state, items) {
         this.state.items = items
       },
+      setObjMsg(state, objMsg) {
+        this.state.objMsg = objMsg
+      }
     },
   })
 }
