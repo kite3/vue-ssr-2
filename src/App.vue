@@ -1,13 +1,22 @@
 <template>
   <div>
-    <router-link to="/">home</router-link>
-    <router-link to="/about">about</router-link>
+    <a href="javascript:void(0)" @click.prevent="goHome">home</a>
+    <a href="javascript:void(0)" @click.prevent="goAbout">about</a>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  methods: {
+    goHome() {
+      location.href = location.origin + '/'
+    },
+    goAbout() {
+      location.href = location.origin + '/about'
+    },
+  },
+}
 </script>
 
 <style></style>
