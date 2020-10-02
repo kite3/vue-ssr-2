@@ -17,6 +17,9 @@ export default {
       return this.$store.state.objMsg
     },
   },
+  created() {
+    this.$root.$options.ssrContext.title = 'hehe...'
+  },
   methods: {
     onClick() {
       console.log('about')
