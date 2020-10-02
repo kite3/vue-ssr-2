@@ -14,6 +14,7 @@ const fetchItems = function () {
     ]
     setTimeout(() => {
       resolve(items)
+      console.log('fetchItems success')
     }, 300)
   })
 }
@@ -27,6 +28,7 @@ const fetchObjMsg = function () {
     }
     setTimeout(() => {
       resolve(objMsg)
+      console.log('fetchObjMsg success')
     }, 300)
   })
 }
