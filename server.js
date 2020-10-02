@@ -31,6 +31,8 @@ server.get('*', (req, res) => {
       // 添加$mount所需的id
       html = html.replace(`data-server-rendered="true"`, `id="app" data-server-rendered="true"`)
       // console.log(html)
+      // 防止响应的中文乱码
+      res.set('Content-Type', 'text/html')
       res.end(html)
     }
   })
