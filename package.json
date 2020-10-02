@@ -4,19 +4,49 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rimraf ./dist",
+    "build:client": "webpack --config ./build/webpack.client.config.js",
+    "build:server": "webpack --config ./build/webpack.server.config.js",
+    "server": "node ./server.js",
+    "start": "npm run clean && npm run build:client && npm run build:server && npm run server"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
     "vue": "^2.6.12",
     "vue-router": "^3.4.5",
-    "vue-server-renderer": "^2.6.12",
-    "vuex-router-sync": "^5.0.0"
+    "vuex": "^3.5.1",
+    "vuex-router-sync": "^5.0.0",
+    "vue-server-renderer": "^2.6.12"
   },
   "devDependencies": {
-    "prettier": "^2.1.2"
+    "express": "^4.17.1",
+    "prettier": "^2.1.2",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-merge": "^5.1.4",
+    "webpack-node-externals": "^2.5.2",
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0",
+    "@vue/babel-preset-jsx": "^1.1.2",
+    "autoprefixer": "^10.0.0",
+    "babel-loader": "^8.1.0",
+    "cross-env": "^7.0.2",
+    "css-loader": "^4.3.0",
+    "file-loader": "^6.1.0",
+    "html-webpack-plugin": "^4.4.1",
+    "mini-css-extract-plugin": "^0.11.2",
+    "node-sass": "^4.14.1",
+    "postcss": "^8.0.5",
+    "postcss-loader": "^4.0.2",
+    "rimraf": "^3.0.2",
+    "sass-loader": "^10.0.2",
+    "style-loader": "^1.2.1",
+    "url-loader": "^4.1.0",
+    "vue-loader": "^15.9.3",
+    "vue-template-compiler": "^2.6.12",
+    "webpack-dev-server": "^3.11.0"
   }
 }
