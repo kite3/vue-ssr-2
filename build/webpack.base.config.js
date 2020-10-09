@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 const config = {
@@ -43,7 +44,10 @@ const config = {
   },
   plugins: [
     // 解析vue单文件组件，不加打包会报错
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.VUE_ENV': JSON.stringify('server')
+    })
   ]
 }
 

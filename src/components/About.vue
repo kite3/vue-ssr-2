@@ -18,7 +18,7 @@ export default {
     },
   },
   created() {
-    this.$root.$options.ssrContext.title = 'hehe...'
+    // this.$root.$options.ssrContext.title = 'hehe...'
   },
   methods: {
     onClick() {
